@@ -41,17 +41,17 @@ public class FirstPersonController : MonoBehaviour
         Vector3 targetMoveAmount = moveDir * walkSpeed; // Controlls the speed in that direction
         moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity, smoothAmount); // Smoothes the movement between axises
 
-        if (Input.GetButtonDown("Jump")){
+        if (Input.GetButtonDown("Jump")){ // Checks if user presses space
             if (grounded){
-            GetComponent<Rigidbody>().AddForce(transform.up * jumpForce);
+            GetComponent<Rigidbody>().AddForce(transform.up * jumpForce); // Adds force for jump
           }
         }
-        grounded = false;
-        Ray ray = new Ray(transform.position, -transform.up);
+        grounded = false; // Grounded is set to false by default
+        Ray ray = new Ray(transform.position, -transform.up); // Creates ray from player to ground
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 1 + 0.1f, groundedMask)){
-            grounded = true;
+        if (Physics.Raycast(ray, out hit, 1 + 0.1f, groundedMask)){ // If ray hits surface with 'ground' layer
+            grounded = true; // Grounded set to true
         }
 
     }
