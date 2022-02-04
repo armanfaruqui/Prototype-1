@@ -5,10 +5,9 @@ using UnityEngine;
 public class GravityAttractor : MonoBehaviour
 {
     public float gravity = -10f; // How powerful the gravity is
-    public string currentGravity = "planet1";
+    public int currentGravity = 1;
 
     public void Attract(Transform body){ // Called by each gravity body in the scene
-        Debug.Log("hello");
         Vector3 targetDir = (body.position -transform.position).normalized; // Direction the up axis of the body should be facing
         Vector3 bodyUp = body.up; // Stores the bodies original position in a var
 
