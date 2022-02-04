@@ -11,7 +11,7 @@ public class GravityBody : MonoBehaviour
     void Awake()
     {
         planets = GameObject.FindGameObjectsWithTag("Planet");
-        Debug.Log(planets.Length);
+        Debug.Log(planets[0]);
         GetComponent<Rigidbody>().useGravity = false; // Prevents the rigidbody gravity from affecting the gravityattractor force
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation; // Prevents the rigidbody gravity from affecting the gravityattarctor rotation
     }
@@ -30,13 +30,14 @@ public class GravityBody : MonoBehaviour
         // Debug.Log(planetAttractor);
     }
 
-    void OnTriggerEnter(Collider other){
-        Debug.Log("TRIGGERED");
-        Debug.Log(other.name);
+    void OnTriggerEnter(Collider other){ // Switches a variable to indicate which planet the gravity should be working for. 
         if (other.name == "Gravity_Planet1"){
-            whichGravity = 1;
+            whichGravity = 2; // Planet1's index is 1 on the array created for "FindGameObjectsWithTag"
         }
         if (other.name == "Gravity_Planet2"){
+            whichGravity = 1;
+        }
+        if (other.name == "Gravity_Planet3"){
             whichGravity = 0;
         }
         
